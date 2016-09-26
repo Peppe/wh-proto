@@ -98,4 +98,14 @@
     margin-right:10px;
   }
 
+  .grid-field {
+    width:100%;
+    height:100%;
+    padding:0 10px;
+    font-family: "Montserrat";
+    border:none;
+  }
+  .hours-grid .v-grid-cell {
+    padding: 0 0px;
+  }
 }

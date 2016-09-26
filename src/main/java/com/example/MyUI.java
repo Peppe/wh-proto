@@ -11,6 +11,8 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
+import com.vaadin.ui.renderers.HtmlRenderer;
+import com.vaadin.ui.renderers.Renderer;
 import com.vaadin.ui.themes.ValoTheme;
 import org.vaadin.teemu.VaadinIcons;
 
@@ -80,15 +82,22 @@ public class MyUI extends UI {
         container.addContainerProperty("Time Category", String.class, null);
         for (int i = 0; i <30; i++){
             Item item = container.addItem(i);
-            item.getItemProperty("Project").setValue("Project");
-            item.getItemProperty("Contract").setValue("Contract");
-            item.getItemProperty("Time").setValue("4h 30min");
-            item.getItemProperty("Description").setValue("Description");
-            item.getItemProperty("Department").setValue("SER");
-            item.getItemProperty("Time Category").setValue("Normal");
+            item.getItemProperty("Project").setValue("<input type=\"text\" name=\"project\" class=\"grid-field\" value=\"Project " + i + "\" required>");
+            item.getItemProperty("Contract").setValue("<input type=\"text\" name=\"contract\" class=\"grid-field\" value=\"Contract " + i + "\" required>");
+            item.getItemProperty("Time").setValue("<input type=\"text\" name=\"time\" class=\"grid-field\" value=\"4h 30min\" required>");
+            item.getItemProperty("Description").setValue("<input type=\"text\" name=\"description\" class=\"grid-field\" value=\"Description " + i + "\" required>");
+            item.getItemProperty("Department").setValue("<input type=\"text\" name=\"department\" class=\"grid-field\" value=\"Ser\" required>");
+            item.getItemProperty("Time Category").setValue("<input type=\"text\" name=\"time-category\" class=\"grid-field\" value=\"Normal\" required>");
         }
         Grid grid = new Grid();
+        grid.addStyleName("hours-grid");
         grid.setContainerDataSource(container);
+        grid.getColumn("Project").setRenderer(new HtmlRenderer());
+        grid.getColumn("Contract").setRenderer(new HtmlRenderer());
+        grid.getColumn("Time").setRenderer(new HtmlRenderer());
+        grid.getColumn("Description").setRenderer(new HtmlRenderer());
+        grid.getColumn("Department").setRenderer(new HtmlRenderer());
+        grid.getColumn("Time Category").setRenderer(new HtmlRenderer());
         grid.setSizeFull();
         return grid;
     }
