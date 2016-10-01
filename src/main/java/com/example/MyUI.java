@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import com.vaadin.annotations.StyleSheet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.VaadinRequest;
@@ -12,7 +13,6 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.renderers.HtmlRenderer;
-import com.vaadin.ui.renderers.Renderer;
 import com.vaadin.ui.themes.ValoTheme;
 import org.vaadin.teemu.VaadinIcons;
 
@@ -25,6 +25,7 @@ import org.vaadin.teemu.VaadinIcons;
  */
 @Theme("mytheme")
 @StyleSheet({"https://fonts.googleapis.com/css?family=Montserrat"})
+@Widgetset("com.example.WhProtoWidgetset")
 public class MyUI extends UI {
 
     @Override
@@ -92,7 +93,7 @@ public class MyUI extends UI {
         Grid grid = new Grid();
         grid.addStyleName("hours-grid");
         grid.setContainerDataSource(container);
-        grid.getColumn("Project").setRenderer(new HtmlRenderer());
+        grid.getColumn("Project").setRenderer(new MyRenderer());
         grid.getColumn("Contract").setRenderer(new HtmlRenderer());
         grid.getColumn("Time").setRenderer(new HtmlRenderer());
         grid.getColumn("Description").setRenderer(new HtmlRenderer());
